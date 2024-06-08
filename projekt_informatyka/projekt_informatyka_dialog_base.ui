@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>588</width>
-    <height>330</height>
+    <width>693</width>
+    <height>501</height>
    </rect>
   </property>
   <property name="font">
@@ -22,10 +22,10 @@
   <widget class="QDialogButtonBox" name="button_box">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>290</y>
+     <x>510</x>
+     <y>450</y>
      <width>161</width>
-     <height>32</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="orientation">
@@ -38,9 +38,9 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>30</y>
-     <width>241</width>
+     <x>10</x>
+     <y>70</y>
+     <width>261</width>
      <height>61</height>
     </rect>
    </property>
@@ -57,10 +57,10 @@
   <widget class="QLabel" name="label_answer">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>240</y>
-     <width>571</width>
-     <height>21</height>
+     <x>10</x>
+     <y>330</y>
+     <width>671</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="text">
@@ -70,20 +70,20 @@
   <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>270</x>
      <y>80</y>
-     <width>361</width>
-     <height>27</height>
+     <width>401</width>
+     <height>41</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_calculate_dh">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>120</y>
-     <width>281</width>
-     <height>91</height>
+     <x>30</x>
+     <y>150</y>
+     <width>221</width>
+     <height>111</height>
     </rect>
    </property>
    <property name="font">
@@ -93,52 +93,108 @@
     </font>
    </property>
    <property name="text">
-    <string>OBLICZ PRZEWYŻSZENIE</string>
+    <string>
+OBLICZ
+PRZEWYŻSZENIE
+</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_calculate_area">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>120</y>
-     <width>291</width>
-     <height>91</height>
+     <x>390</x>
+     <y>150</y>
+     <width>261</width>
+     <height>111</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Comic Sans MS</family>
-     <pointsize>14</pointsize>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>OBLICZ POLE POWIERZCHNI</string>
+    <string>OBLICZ
+POLE
+POWIERZCHNI</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>10</y>
-     <width>481</width>
-     <height>31</height>
+     <x>10</x>
+     <y>0</y>
+     <width>581</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="text">
     <string>WITAJ! CO MOGĘ DZIŚ DLA CIEBIE OBLICZYĆ? :)</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_clean">
+  <widget class="QPushButton" name="pushButton_clean_answer">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>280</y>
-     <width>271</width>
+     <y>390</y>
+     <width>341</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
     <string>Wyczyść konsolę wynikową</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_clean_points">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>450</y>
+     <width>341</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Wyczyść zaznaczenie punktów</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_unit">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>270</y>
+     <width>73</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>m2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>a</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ha</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>270</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>jednostka:</string>
    </property>
   </widget>
  </widget>

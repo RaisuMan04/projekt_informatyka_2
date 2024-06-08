@@ -23,6 +23,7 @@
 """
 
 import os
+import numpy as np
 
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
@@ -46,7 +47,8 @@ class ProjektInformatykaDialog(QtWidgets.QDialog, FORM_CLASS):
         self.button_box.rejected.connect(self.reject)
         self.pushButton_calculate_dh.clicked.connect(self.calculate_dh)
         self.pushButton_calculate_area.clicked.connect(self.calculate_area)
-        self.pushButton_clean.clicked.connect(self.clean)
+        self.pushButton_clean_answer.clicked.connect(self.clean_answer)
+        self.pushButton_clean_points.clicked.connect(self.clean_points)
         
     def calculate_dh(self):
         layer = self.mMapLayerComboBox.currentLayer()
@@ -55,13 +57,16 @@ class ProjektInformatykaDialog(QtWidgets.QDialog, FORM_CLASS):
             h_1 = float(features[0]['wysokosc'])
             h_2 = float(features[1]['wysokosc'])
             dh = h_2 - h_1
-            self.label_answer.setText(f'WYNIK: {dh:.4f} m :)')
+            self.label_answer.setText(f'WYNIK: {dh:.3f} m :)')
         else:
             self.label_answer.setText(f'ZAZNACZONO NIEODPOWIEDNIĄ LICZBĘ PUNKTÓW! :(')
             
-    def clean(self):
+    def clean_answer(self):
         self.label_answer.setText(f'WYNIK: ')
-        
+    
+    def clean_points(self):
+        self.mMapLayerComboBox.currentLayer().removeSelection()
+            
     def calculate_area(self):
         layer = self.mMapLayerComboBox.currentLayer()
         features = layer.selectedFeatures()
@@ -73,17 +78,30 @@ class ProjektInformatykaDialog(QtWidgets.QDialog, FORM_CLASS):
             Y = []
             for feature in features:
                 geom = feature.geometry()
-                if geom.isMultipart():
-                    points = geom.asMultiPoint()
-                    for point in points:
-                        x = point.x()
-                        y = point.y()
-        self.label_answer.setText(f'WYNIK: {x, y} m :)')
-            # area = []
-            # j = 1
-            # while j + 1 < len(features):
-            #     a = x[i] * (y[i+1] - y[i-1])
-            #     area.append(a)
-            #     j += 1
-            # area = 0.5 * sum(area)
-            # self.label_answer.setText(f'WYNIK: {geom} m^2 :)')
+                point = geom.asPoint()
+                x = point.x()
+                y = point.y()
+                X.append(x)
+                Y.append(y)
+            wsp = []
+            n = len(features)
+            wsp.append([X[n-1], Y[n-1]])
+            for j in range(n):
+                x = np.array([X[j], Y[j]])
+                wsp.append(x)
+            wsp.append([X[0], Y[0]])
+            wsp = np.array(wsp)
+            area = 0
+            a = 0
+            for k in range(1,n+1):
+                area += wsp[k,0] * (wsp[k+1, 1] - wsp[k-1, 1])
+                a += 1
+            area = 0.5 * abs(area)
+            j = self.comboBox_unit.currentText()
+            if j == "m2":
+                pass
+            elif j == "a":
+                area /= 100
+            elif j == "ha":
+                area /= 10000
+            self.label_answer.setText(f'WYNIK: {area:.4f} {j} :)')
